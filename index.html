@@ -1,0 +1,119 @@
+<!-- This is a first example of using a template -->
+
+<head>
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/handlebars-v3.0.3.js"></script>
+
+<script src="js/bootstrap.min.js"></script>
+<script src="AnimalsData.js"></script>
+<script src="animals.js"></script>
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/gallery.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1>The animals of our planet.</h1>
+      </div>
+
+      <nav>
+        <ul class="nav nav-tabs">
+            <li role="" class="active"><a href="#" id="category-tab" >Category</a></li>
+            <li role=""><a href="#" id="animals-tab" >All types</a></li>
+        </ul>
+        <br/><br/>
+      </nav>
+
+      <div id="content">
+      </div>
+    </div> <!--/container-->
+    
+    <script id="category-template" type="text/x-handlebars-template">
+
+      <div class="row">
+
+        {{#each category}}
+
+          <div class="col-xs-12 col-md-3"> 
+            <div class="album-thumbnail">
+              {{#with animals}}
+                <div class="image" data-id="{{@index}}">
+                  <a href="#">
+                    <img class="crop-img" src="{{[0].image1}}" alt=""/>
+                  </a>
+                </div>
+              {{/with}}
+            
+              <div class="caption">
+                <h4> {{name}} </h4>
+                <p>{{animals.length}} animals</p>
+              </div>
+            </div>
+          </div> <!-- / col -->
+
+        {{/each}}
+
+      </div> <!-- / row -->
+    </script>
+
+    <script id="animals-template" type="text/x-handlebars-template">
+      
+      <div class="row">
+        
+        <div class="caption">
+          <h2>{{name}}</h2>
+        </div>
+
+        {{#each animals}}
+
+          <div class="col-sm-12 col-md-6">
+            <div class="thumbnail type">
+              <div id="ph">
+                <img class="photo" src="{{image1}}" alt="...">
+                <img class="photo" src="{{image2}}" alt="...">
+              </div>
+              <div class="caption">
+                <h3>{{name}}</h3>
+                <p>{{description}}</p>
+              </div>
+            </div>
+          </div> <!-- / col -->
+        {{/each}}
+      </div> <!-- / row -->
+    </script>
+
+    <script id="alltype-template" type="text/x-handlebars-template">
+            
+      {{#each category}}
+        <div class="row">
+        
+          <div class="caption">
+            <h2>{{name}}</h2>
+          </div>
+
+          {{#each animals}}
+
+          <div class="col-sm-12 col-md-12">
+            <div class="thumbnail type">
+              <div id="ph">
+                <img class="photo" src="{{image1}}" alt="...">
+                <img class="photo" src="{{image2}}" alt="...">
+              </div>
+              <div class="caption">
+                <h3>{{name}}</h3>
+                <p>{{description}}</p>
+              </div>
+            </div>
+          </div> <!-- /col -->
+          {{/each}}
+        </div> <!-- / row -->
+      {{/each}}
+    </script>
+
+</body>
